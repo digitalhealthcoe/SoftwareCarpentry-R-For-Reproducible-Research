@@ -112,17 +112,6 @@ ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + geom_point
 Hint: the gapminder dataset has a column called "year", which should appear
 on the x-axis.
 
-:::::::::::::::  solution
-
-## Solution to challenge 1
-
-Here is one possible solution:
-
-```{r ch1-sol, fig.cap="Binned scatterplot of life expectancy versus year showing how life expectancy has increased over time"}
-ggplot(data = gapminder, mapping = aes(x = year, y = lifeExp)) + geom_point()
-```
-
-:::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -136,21 +125,6 @@ Another *aesthetic* property we can modify is the point *color*. Modify the
 code from the previous challenge to **color** the points by the "continent"
 column. What trends do you see in the data? Are they what you expected?
 
-:::::::::::::::  solution
-
-## Solution to challenge 2
-
-The solution presented below adds `color=continent` to the call of the `aes`
-function. The general trend seems to indicate an increased life expectancy
-over the years. On continents with stronger economies we find a longer life
-expectancy.
-
-```{r ch2-sol, fig.cap="Binned scatterplot of life expectancy vs year with color-coded continents showing value of 'aes' function"}
-ggplot(data = gapminder, mapping = aes(x = year, y = lifeExp, color=continent)) +
-  geom_point()
-```
-
-:::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -213,19 +187,6 @@ So far, we've seen how to use an aesthetic (such as **color**) as a *mapping* to
 
 Switch the order of the point and line layers from the previous example. What
 happened?
-
-:::::::::::::::  solution
-
-## Solution to challenge 3
-
-The lines now get drawn over the points!
-
-```{r ch3-sol, fig.alt="Scatter plot of life expectancy vs GDP per capita with a trend line summarising the relationship between variables. The plot illustrates the possibilities for styling visualisations in ggplot2 with data points enlarged, coloured orange, and displayed without transparency."}
-ggplot(data = gapminder, mapping = aes(x=year, y=lifeExp, group=country)) +
- geom_point() + geom_line(mapping = aes(color=continent))
-```
-
-:::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -291,24 +252,6 @@ Hint: do not use the `aes` function.
 
 Hint: the equivalent of `linewidth` for points is `size`.
 
-:::::::::::::::  solution
-
-## Solution to challenge 4a
-
-Here a possible solution:
-Notice that the `color` argument is supplied outside of the `aes()` function.
-This means that it applies to all data points on the graph and is not related to
-a specific variable.
-
-```{r ch4a-sol, fig.alt="Scatter plot of life expectancy vs GDP per capita with a trend line summarising the relationship between variables. The plot illustrates the possibilities for styling visualisations in ggplot2 with data points enlarged, coloured orange, and displayed without transparency."}
-ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
- geom_point(size=3, color="orange") + scale_x_log10() +
- geom_smooth(method="lm", linewidth=1.5)
-```
-
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
@@ -318,23 +261,6 @@ Modify your solution to Challenge 4a so that the
 points are now a different shape and are colored by continent with new
 trendlines.  Hint: The color argument can be used inside the aesthetic.
 
-:::::::::::::::  solution
-
-## Solution to challenge 4b
-
-Here is a possible solution:
-Notice that supplying the `color` argument inside the `aes()` functions enables you to
-connect it to a certain variable. The `shape` argument, as you can see, modifies all
-data points the same way (it is outside the `aes()` call) while the `color` argument which
-is placed inside the `aes()` call modifies a point's color based on its continent value.
-
-```{r ch4b-sol}
-ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp, color = continent)) +
- geom_point(size=3, shape=17) + scale_x_log10() +
- geom_smooth(method="lm", linewidth=1.5)
-```
-
-:::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -438,24 +364,7 @@ Advanced:
 - Rename y axis as Life Expectancy.
 - Remove x axis labels.
 
-:::::::::::::::  solution
 
-## Solution to Challenge 5
-
-Here a possible solution:
-`xlab()` and `ylab()` set labels for the x and y axes, respectively
-The axis title, text and ticks are attributes of the theme and must be modified within a `theme()` call.
-
-```{r ch5-sol}
-ggplot(data = gapminder, mapping = aes(x = continent, y = lifeExp, fill = continent)) +
- geom_boxplot() + facet_wrap(~year) +
- ylab("Life Expectancy") +
- theme(axis.title.x=element_blank(),
-       axis.text.x = element_blank(),
-       axis.ticks.x = element_blank())
-```
-
-:::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 

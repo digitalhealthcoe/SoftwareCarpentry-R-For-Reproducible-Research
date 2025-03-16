@@ -159,19 +159,6 @@ Make a data frame that holds the following information for yourself:
 Then use `rbind` to add an entry for the people sitting beside you.
 Finally, use `cbind` to add a column with each person's answer to the question, "Is it time for coffee break?"
 
-:::::::::::::::  solution
-
-## Solution to Challenge 1
-
-```{r}
-df <- data.frame(first = c("Grace"),
-                 last = c("Hopper"),
-                 lucky_number = c(0))
-df <- rbind(df, list("Marie", "Curie", 238) )
-df <- cbind(df, coffeetime = c(TRUE,TRUE))
-```
-
-:::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -293,31 +280,7 @@ It's good practice to also check the last few lines of your data and some in the
 
 Searching for ones specifically in the middle isn't too hard, but we could ask for a few lines at random. How would you code this?
 
-:::::::::::::::  solution
-
-## Solution to Challenge 2
-
-To check the last few lines it's relatively simple as R already has a function for this:
-
-```r
-tail(gapminder)
-tail(gapminder, n = 15)
-```
-
-What about a few arbitrary rows just in case something is odd in the middle?
-
-## Tip: There are several ways to achieve this.
-
-The solution here presents one form of using nested functions, i.e. a function passed as an argument to another function. This might sound like a new concept, but you are already using it!
-Remember my\_dataframe[rows, cols] will print to screen your data frame with the number of rows and columns you asked for (although you might have asked for a range or named columns for example). How would you get the last row if you don't know how many rows your data frame has? R has a function for this. What about getting a (pseudorandom) sample? R also has a function for this.
-
-```r
-gapminder[sample(nrow(gapminder), 5), ]
-```
-
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::
 
 To make sure our analysis is reproducible, we should put the code
 into a script file so we can come back to it later.
@@ -333,33 +296,7 @@ directory and add it to version control.
 Run the script using the `source` function, using the file path
 as its argument (or by pressing the "source" button in RStudio).
 
-:::::::::::::::  solution
 
-## Solution to Challenge 3
-
-The `source` function can be used to use a script within a script.
-Assume you would like to load the same type of file over and over
-again and therefore you need to specify the arguments to fit the
-needs of your file. Instead of writing the necessary argument again
-and again you could just write it once and save it as a script. Then,
-you can use `source("Your_Script_containing_the_load_function")` in a new
-script to use the function of that script without writing everything again.
-Check out `?source` to find out more.
-
-```{r, eval=FALSE}
-download.file("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/main/episodes/data/gapminder_data.csv", destfile = "data/gapminder_data.csv")
-gapminder <- read.csv(file = "data/gapminder_data.csv")
-```
-
-To run the script and load the data into the `gapminder` variable:
-
-```{r, eval=FALSE}
-source(file = "scripts/load-gapminder.R")
-```
-
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
@@ -371,17 +308,6 @@ as well as the output of functions like `colnames` and `dim`
 to explain what everything that `str` prints out for gapminder means.
 If there are any parts you can't interpret, discuss with your neighbors!
 
-:::::::::::::::  solution
-
-## Solution to Challenge 4
-
-The object `gapminder` is a data frame with columns
-
-- `country` and `continent` are character strings.
-- `year` is an integer vector.
-- `pop`, `lifeExp`, and `gdpPercap` are numeric vectors.
-
-:::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 

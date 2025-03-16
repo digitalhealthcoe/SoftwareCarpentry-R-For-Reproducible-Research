@@ -54,3 +54,6 @@ vendor/
 .docker-vendor/
 Gemfile.lock
 .*history
+
+
+episodes/solutions/
